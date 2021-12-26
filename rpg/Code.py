@@ -3,7 +3,7 @@ import pygame
 from pygame.constants import QUIT
 pygame.init()
 clock = pygame.time.Clock()
-fps= 60
+FPS= 60
 #game window
 
 BOTTOM_PANEL = 150
@@ -22,17 +22,26 @@ green = (0, 255, 0)
 background_img=pygame.image.load('/Users/lisalu/git/games/rpg/Assets/Background/background.png').convert_alpha()
 
 panel_img=pygame.image.load('/Users/lisalu/git/games/rpg/Assets/icons/panel.png').convert_alpha()
+
+
 def draw_text(text,font,text_color, x, y):
     img = font.render(text, True,text_color )
     screen.blit(img, (x, y))
+
+
 def draw_bg():
     screen.blit(background_img,(0,0))
+
+
 def draw_panel():
     screen.blit(panel_img,(0,SCREEN_HEIGHT-BOTTOM_PANEL))
     draw_text(f'{knight.name} HP : {knight.hp}', font,red, 100, SCREEN_HEIGHT-BOTTOM_PANEL+10 )
 
-#classes
+
+
 class Fighter():
+    """class Fighter 
+    """
     def __init__(self, x, y, name, max_hp, strength, potions):
         self.name = name
         self.max_hp =  max_hp
@@ -59,7 +68,6 @@ class Fighter():
             img = self.image = pygame.transform.scale(img,(img.get_width()*3, img.get_height()*3 ))
             temp_list.append(img)
         self.animation_list.append(temp_list)
-        #hurt
         temp_list = []
         for i in range (2):
             img = pygame.image.load(f'/Users/lisalu/git/games/rpg/Assets/{self.name}/Hurt/{i}.png')
@@ -75,6 +83,7 @@ class Fighter():
         self.image = self.animation_list[self.action][self.frame_index]
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
+
     def update(self):
         animation_cooldown = 100
         self.image = self.animation_list[self.action][self.frame_index]
@@ -96,7 +105,7 @@ bandit_list.append(bandit2)
 run= True
 
 while run:
-    clock.tick(fps)
+    clock.tick(FPS)
     draw_bg()
     draw_panel()
     knight.update()
