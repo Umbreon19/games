@@ -41,6 +41,10 @@ def draw_bg():
 def draw_panel():
     screen.blit(panel_img,(0,SCREEN_HEIGHT-BOTTOM_PANEL))
     draw_text(f'{knight.name} HP : {knight.hp}', font,red, 100, SCREEN_HEIGHT-BOTTOM_PANEL+10 )
+    draw_text(f'{bandit1.name}1 HP : {bandit1.hp}', font,red, 420, SCREEN_HEIGHT-BOTTOM_PANEL+10 )
+    draw_text(f'{bandit2.name}2 HP : {bandit2.hp}', font,red, 600, SCREEN_HEIGHT-BOTTOM_PANEL+10 )
+
+
 
 
 
