@@ -10,6 +10,11 @@ BOTTOM_PANEL = 150
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400 + BOTTOM_PANEL
 
+ACTION_IDLE = 0 
+ACTION_ATK = 1
+ACTION_HURT = 2
+ACTION_DEATH =3
+
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Battle')
 
@@ -90,11 +95,24 @@ class Fighter():
         if pygame.time.get_ticks() - self.update_time > animation_cooldown:
             self.update_time = pygame.time.get_ticks()
             self.frame_index += 1
-        if self.frame_index >= len(self.animation_list[self.action]) :
+        if self.frame_index >= len(self.animation_list[self.action]):
             self.frame_index = 0
+            if self.action == ACTION_ATK:
+                self.idle()
         
     def draw(self):
         screen.blit(self.image, self.rect)
+
+    def attack(self):
+        if self.action != ACTION_ATK:
+            self.action = ACTION_ATK
+            self.frame_index = 0
+            pygame.display.set_caption('Attack')
+
+    def idle(self):
+        self.action = ACTION_IDLE
+        pygame.display.set_caption('Battle')
+
 
 knight =  Fighter(200, 260, 'Knight', 30, 10, 3)
 bandit1 = Fighter(550, 270,'Bandit', 20, 6, 1)
@@ -116,6 +134,10 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run= False
+        if event.type == pygame.KEYDOWN:
+            if event.mod == pygame.KMOD_NONE:
+                if event.key == pygame.K_j:
+                    knight.attack()
     pygame.display.update()        
 
 pygame.quit()
