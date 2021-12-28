@@ -19,9 +19,9 @@ red = (255, 0,0)
 green = (0, 255, 0)
 
 #to keep the window running make sure to load assets outside of game loop
-background_img=pygame.image.load('/Users/lisalu/git/games/rpg/Assets/Background/background.png').convert_alpha()
+background_img=pygame.image.load('rpg/Assets/Background/background.png').convert_alpha()
 
-panel_img=pygame.image.load('/Users/lisalu/git/games/rpg/Assets/icons/panel.png').convert_alpha()
+panel_img=pygame.image.load('rpg/Assets/icons/panel.png').convert_alpha()
 
 
 def draw_text(text,font,text_color, x, y):
@@ -57,26 +57,26 @@ class Fighter():
         #idle
         temp_list = []
         for i in range (8):
-            img = pygame.image.load(f'/Users/lisalu/git/games/rpg/Assets/{self.name}/Idle/{i}.png')
+            img = pygame.image.load(f'rpg/Assets/{self.name}/Idle/{i}.png')
             img = self.image = pygame.transform.scale(img,(img.get_width()*3, img.get_height()*3 ))
             temp_list.append(img)
         self.animation_list.append(temp_list)
         #attack    
         temp_list = []
         for i in range (8):
-            img = pygame.image.load(f'/Users/lisalu/git/games/rpg/Assets/{self.name}/Attack/{i}.png')
+            img = pygame.image.load(f'rpg/Assets/{self.name}/Attack/{i}.png')
             img = self.image = pygame.transform.scale(img,(img.get_width()*3, img.get_height()*3 ))
             temp_list.append(img)
         self.animation_list.append(temp_list)
         temp_list = []
         for i in range (2):
-            img = pygame.image.load(f'/Users/lisalu/git/games/rpg/Assets/{self.name}/Hurt/{i}.png')
+            img = pygame.image.load(f'rpg/Assets/{self.name}/Hurt/{i}.png')
             img = self.image = pygame.transform.scale(img,(img.get_width()*3, img.get_height()*3 ))
             temp_list.append(img)
         self.animation_list.append(temp_list)
         temp_list = []
         for i in range (10):
-            img = pygame.image.load(f'/Users/lisalu/git/games/rpg/Assets/{self.name}/Death/{i}.png')
+            img = pygame.image.load(f'rpg/Assets/{self.name}/Death/{i}.png')
             img = self.image = pygame.transform.scale(img,(img.get_width()*3, img.get_height()*3 ))
             temp_list.append(img)
         self.animation_list.append(temp_list)        
