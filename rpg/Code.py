@@ -45,9 +45,6 @@ def draw_panel():
     draw_text(f'{bandit2.name}2 HP : {bandit2.hp}', font,red, 600, SCREEN_HEIGHT-BOTTOM_PANEL+10 )
 
 
-
-
-
 class Fighter():
     """class Fighter 
     """
@@ -106,6 +103,18 @@ class Fighter():
         
     def draw(self):
         screen.blit(self.image, self.rect)
+    
+    def move_right(self):
+        x = self.rect.right
+        y = self.rect.center
+        if x < 800:
+            self.rect.center = (x+30, y)
+
+    def move_left(self):
+        x = self.rect.left
+        y = self.rect.center
+        if x > 0:
+            self.rect.center = (x-30, y)
 
     def attack(self):
         if self.action != ACTION_ATK:
@@ -140,6 +149,10 @@ while run:
             run= False
         if event.type == pygame.KEYDOWN:
             if event.mod == pygame.KMOD_NONE:
+                if event.key == pygame.K_d:
+                    knight.move_right()
+                if event.key == pygame.K_a:
+                    knight.move_left()
                 if event.key == pygame.K_j:
                     knight.attack()
     pygame.display.update()        
