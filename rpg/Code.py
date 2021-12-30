@@ -10,6 +10,8 @@ BOTTOM_PANEL = 150
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 400 + BOTTOM_PANEL
 
+MOVE_STEP = 30
+
 ACTION_IDLE = 0 
 ACTION_ATK = 1
 ACTION_HURT = 2
@@ -105,16 +107,12 @@ class Fighter():
         screen.blit(self.image, self.rect)
     
     def move_right(self):
-        x = self.rect.right
-        y = self.rect.center
-        if x < 800:
-            self.rect.center = (x+30, y)
+        if self.rect.right < SCREEN_WIDTH:
+            self.rect = self.rect.move(MOVE_STEP, 0)
 
     def move_left(self):
-        x = self.rect.left
-        y = self.rect.center
-        if x > 0:
-            self.rect.center = (x-30, y)
+        if self.rect.left > 0:
+            self.rect = self.rect.move(-MOVE_STEP, 0)
 
     def attack(self):
         if self.action != ACTION_ATK:
